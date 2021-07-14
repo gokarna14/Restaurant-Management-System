@@ -1,0 +1,17 @@
+{
+    "name": "nodejs",
+    "version": "1.0.0",
+    "description": "Supposed to communicate with MySQL in Restaurant Management System project",
+    "main": "server.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "node server.js"
+    },
+    "author": "03_14_15_16",
+    "license": "ISC",
+    "dependencies": {
+        "express": "^4.17.1",
+        "mysql": "^2.18.1",
+        "nodemon": "^2.0.12"
+    }
+}
