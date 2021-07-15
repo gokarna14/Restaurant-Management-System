@@ -1,2 +1,27 @@
 ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'password1';
 mysql -u root -p
+ALTER TABLE CUSTOMERS ADD CusID INT NOT NULL AUTO_INCREMENT PRIMARY KEY FIRST;
+
+
+<Parallax pages={2} style={{ top: '0', left: '0' }}>
+  <ParallaxLayer
+    offset={0}
+    speed={2.5}
+    style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+    <p>Scroll down</p>
+  </ParallaxLayer>
+
+  <ParallaxLayer offset={1} speed={2} style={{ backgroundColor: '#ff6d6d' }} />
+
+  <ParallaxLayer
+    offset={1}
+    speed={0.5}
+    style={{
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      color: 'white',
+    }}>
+    <p>Scroll up</p>
+  </ParallaxLayer>
+</Parallax>

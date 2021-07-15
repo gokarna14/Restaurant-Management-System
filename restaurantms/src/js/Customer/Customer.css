@@ -1,0 +1,11 @@
+.inf {
+    width: 50%;
+    float: right;
+    padding: 20px;
+}
+
+.form {
+    width: 50%;
+    float: left;
+    padding: 20px;
+}

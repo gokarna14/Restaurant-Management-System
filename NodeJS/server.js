@@ -22,7 +22,7 @@ const app = express();
 
 app.get('/api/customers/', (req, res)=>{
     let r = '';
-    db.query("SELECT * FROM customers", (err, rows, fields)=>{
+    db.query("SELECT * FROM orderdetails", (err, rows, fields)=>{
         if(err){
             console.log('Error in the query');
         }else{
