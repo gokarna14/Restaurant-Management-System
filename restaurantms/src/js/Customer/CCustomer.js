@@ -1,4 +1,7 @@
 import React, { useState } from 'react'
+import axios from 'axios'
+
+import { CusIn, CusTypes } from '../db';
 import Information from '../Information';
 import './Customer.css'
 
@@ -6,47 +9,8 @@ import './Customer.css'
 const CCustomer =()=>{
 
 
-    const [custInformation, setCustInformation] = useState({
-        "First Name": null,
-        "Middle Name": null,
-        "Last Name": null,
-        "Sex": null,
-        "Phone Number": null,
-        "Email Address": null,
-        "Date of birth": null,
-        "Address": null,
-    })
-    const[types, setTypes] = useState({
-        "First Name class": "nav btn btn-outline-dark",
-        "Middle Name class": "nav btn btn-outline-dark",
-        "Last Name class": "nav btn btn-outline-dark",
-        "Sex class": "nav btn btn-outline-dark",
-        "Phone Number class": "nav btn btn-outline-dark",
-        "Email Address class": "nav btn btn-outline-dark",
-        "Date of birth class": "nav btn btn-outline-dark",
-        "Address class": "nav btn btn-outline-dark",
-
-        "First Name id": "",
-        "Middle Name id": "",
-        "Last Name id": "",
-        "Sex id": "exampleFormControlSelect1",
-        "Phone Number id": "",
-        "Email Address id": "",
-        "Date of birth id": "",
-        "Address id": "",
-
-        "First Name type": "text",
-        "Middle Name type": "text",
-        "Last Name type": "text",
-        "Sex type": "checkbox",
-        "Phone Number type": "text",
-        "Email Address type": "email",
-        "Date of birth type": "date",
-        "Address type": "address",
-
-        "Sex select" : true,
-        "Sex select options": <><option>Male</option><option>Female</option><option>Other</option></>
-    })
+    const [custInformation, setCustInformation] = useState(CusIn)
+    const[cusTypes, setcusTypes] = useState(CusTypes)
 
     const inputDetect=(value, key)=>{
         const adder = {...custInformation}
@@ -64,22 +28,22 @@ const CCustomer =()=>{
                         {
                             (
                                 ()=>{
-                                    if (types[key + " select"]){
+                                    if (cusTypes[key + " select"]){
                                         return(
-                                            <select className={types[key + " class"]}
-                                                id={types[key + " id"]}
-                                                type={types[key + " type"]} 
+                                            <select className={cusTypes[key + " class"]}
+                                                id={cusTypes[key + " id"]}
+                                                type={cusTypes[key + " type"]} 
                                                 placeholder={key} 
                                                 onChange={(e)=>{inputDetect(e.target.value, key)}} 
                                             >
-                                                {types[key + " select options"]}
+                                                {cusTypes[key + " select options"]}
                                             </select>
                                         )
                                     }else{
                                             return(
-                                                <input  className={types[key + " class"]}
-                                                    id={types[key + " id"]}
-                                                    type={types[key + " type"]} 
+                                                <input  className={cusTypes[key + " class"]}
+                                                    id={cusTypes[key + " id"]}
+                                                    type={cusTypes[key + " type"]} 
                                                     placeholder={key} 
                                                     onChange={(e)=>{inputDetect(e.target.value, key)}} 
                                                     />
@@ -94,9 +58,16 @@ const CCustomer =()=>{
         }
     )
 
-    const handleSubmit=(e)=>{
+
+    const addCustomer =(e)=>{
         e.preventDefault()
-        console.log(custInformation);
+        console.log(custInformation)
+        axios.post('/api/add_customer', custInformation).then(res=>{
+            console.log(res)
+        }).catch(err=>{
+            console.log(err)
+        })
+        console.log('sent')
     }
 
     return(
@@ -105,10 +76,10 @@ const CCustomer =()=>{
             <h2>Add a new customer</h2>
             <hr />
             <div className="form">
-                <form onSubmit={handleSubmit} style={{textAlign:'left', padding:'0% 70% 0% 3%'}}>
+                <form style={{textAlign:'left', padding:'0% 70% 0% 3%'}}>
                     {fields}
                     <br />
-                    <input className="btn btn-outline-danger" type="submit" value="Submit" />
+                    <input className="btn btn-outline-danger" type="submit" value="ADD" onClick={addCustomer}/>
                 </form>
             </div>
             <div className="inf">

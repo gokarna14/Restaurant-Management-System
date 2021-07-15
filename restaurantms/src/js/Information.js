@@ -51,7 +51,7 @@ const Information =()=>{
             <animated.div style={{
                 ...styleTopic
                 }}>
-                <h1>DBMS Project, Restaurent Management System</h1>
+                <h1>DBMS Project, Restaurant Management System</h1>
                 <hr />
                 <h3 style={{textAlign:'left'}}>Completed By</h3>
                 <hr />

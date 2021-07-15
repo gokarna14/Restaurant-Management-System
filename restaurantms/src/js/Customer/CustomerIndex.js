@@ -57,6 +57,7 @@ const CustomerIndex =()=>{
     return(
         <div style={{textAlign:'center'}} >
             <h2 >Manage Customer information</h2>
+            <hr />
                 {buttons}
                 {
                         (
