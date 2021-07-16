@@ -8,19 +8,19 @@ const CusIn = {
     "First Name": null,
     "Middle Name": null,
     "Last Name": null,
-    "Sex": 'M',
+    "Sex": 'null',
     "Phone Number": null,
     "Email Address": null,
     "Date of birth": null,
     "Address": null,
-},colNames ={
+},custColNames ={
     "First Name": 'fname',
     "Middle Name": 'mname',
     "Last Name": 'lname',
     "Sex": 'sex',
     "Phone Number": 'phoneNumber',
     "Email Address": 'emailAddress',
-    "Date of birth": 'dob',
+    "Date of birth": 'DOB',
     "Address": 'address',
 }
 var sql = '';
@@ -46,7 +46,6 @@ app.use(express.json())
 
 
 app.get('/api/customers/', (req, res)=>{
-    let r = '';
     db.query("SELECT * FROM orderdetails", (err, rows, fields)=>{
         if(err){
             console.log('Error in the query');
@@ -64,7 +63,7 @@ app.post('/api/add_customer', (req, res)=>{
     sql = 'INSERT INTO CUSTOMERS (';
     for (var i in CusIn){
         if(data[i] !== null){
-            sql += (colNames[i] + ',');
+            sql += (custColNames[i] + ',');
         }
     }
     sql = sql.slice(0, -1)
@@ -82,6 +81,46 @@ app.post('/api/add_customer', (req, res)=>{
         console.log("1 record inserted");
       });
 })
+
+
+app.post('/api/del_customer', (req, res)=>{
+    var data = req.body;
+    sql = 'DELETE FROM CUSTOMERS WHERE';
+    for (var i in CusIn){
+        if(data[i] !== null){
+            sql += (custColNames[i] + ',');
+        }
+    }
+    sql = sql.slice(0, -1)
+    sql += ") VALUES ("
+    for (var i in CusIn){
+        if(data[i] !== null){
+            sql += ( "'" + data[i] + "'" + ',');
+        }
+    } 
+    sql = sql.slice(0, -1)
+    sql += ")"
+    // res.send(sql)
+    db.query(sql, function (err, result) {
+        if (err) throw err;
+        console.log("1 record inserted");
+      });
+})
+
+app.post('/api/show_data/', (req, res)=>{
+    var data = req.body;
+    console.log('Here')
+    db.query(data.sql, (err, rows, fields)=>{
+        if(err){
+            console.log('Error in the query');
+        }else{
+            res.send(rows);
+        }
+    }) 
+})
+ 
+
+
 // "INSERT INTO CUSTOMERS (fname,mname,lname,sex,phoneNumber,emailAddress,dob,address,) VALUES (Gokarna,null,Adhikai,null,9868834768,075bei014.gokarna@pcampus.edu.np,null,Banasthlai,);" 
 
 
@@ -94,11 +133,11 @@ app.get('/createdb', (req, res)=>{
         } 
         else{
             console.log(res);
-            res.send('Database Created');  
-        }
+            res.send('Database Created');   
+        } 
     })
 })*/
 
 app.listen('4000', ()=>{ 
     console.log('Server started on port 4000');
-}); 
+});  
