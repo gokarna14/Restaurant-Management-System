@@ -21,7 +21,7 @@ const DCustomer =()=>{
 
     const delTypeChange =(value)=>{
         setDelInfo({
-            ...delInfo, 
+            ...delInfo,  
             key:value,
             delKeyType: CusTypes[value + " type"],
             column: custColNames[value]
