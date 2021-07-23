@@ -8,6 +8,7 @@ export const SearchKeys ={
         "Email Address": 'emailAddress',
         "Date of birth": 'dob',
         "Address": 'address',
+        "Sex": ""
     }
 }
 
@@ -28,6 +29,15 @@ export const columns = {
 
 export const dataType = {
     CUSTOMERS: {
+        "First Name required": true,
+        "Middle Name required": false,
+        "Last Name required": true,
+        "Sex required": true,
+        "Phone Number required": true,
+        "Email Address required": true,
+        "Date of birth required": true,
+        "Address required": false,
+
         "First Name class": "nav btn btn-outline-dark",
         "Middle Name class": "nav btn btn-outline-dark",
         "Last Name class": "nav btn btn-outline-dark",

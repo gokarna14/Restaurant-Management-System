@@ -1,5 +1,8 @@
 import React, { useState } from 'react'
 import axios from 'axios'
+import { useForm } from "react-hook-form";
+import swal from 'sweetalert';
+
 
 import { SearchKeys, dataType } from '../db';
 import Information from '../Information';
@@ -8,7 +11,7 @@ import './Customer.css'
 
 const CCustomer =()=>{
 
-
+    const { register, handleSubmit, watch, errors } = useForm();
     const [custInformation, setCustInformation] = useState(SearchKeys.CUSTOMERS)
     const[cusTypes, setcusTypes] = useState(dataType.CUSTOMERS)
 
@@ -48,6 +51,7 @@ const CCustomer =()=>{
                                     }else{
                                             return(
                                                 <input  className={cusTypes[key + " class"]}
+                                                    required={cusTypes[key + " required"]}
                                                     id={cusTypes[key + " id"]}
                                                     type={cusTypes[key + " type"]} 
                                                     placeholder={key} 
@@ -75,11 +79,12 @@ const CCustomer =()=>{
         e.preventDefault()
         console.log(custInformation)
         axios.post('/api/add_customer', custInformation).then(res=>{
-            console.log(res)
         }).catch(err=>{
             console.log(err)
+            swal("Error", "Something is wrong", "error");
         })
-        console.log('sent')
+        swal("DONE", "New Customer Recorded", "success");
+        
     }
 
     return(
@@ -88,10 +93,10 @@ const CCustomer =()=>{
             <h2>Add a new customer</h2>
             <hr />
             <div className="aa">
-                <form style={{textAlign:'left', padding:'0% 70% 0% 3%'}}>
+                <form style={{textAlign:'left', padding:'0% 70% 0% 3%'}} onSubmit={addCustomer}>
                     {fields}
                     <br />
-                    <input className="btn btn-outline-danger" type="submit" value="ADD" onClick={addCustomer}/>
+                    <input className="btn btn-outline-danger" type="submit" value="ADD"/>
                 </form>
             </div>
             <div className="inf">

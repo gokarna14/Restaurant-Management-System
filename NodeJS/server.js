@@ -77,7 +77,11 @@ app.post('/api/add_customer', (req, res)=>{
     sql += ")"
     // res.send(sql)
     db.query(sql, function (err, result) {
-        if (err) throw err;
+        if (err){
+            console.log('Error in SQL Query')
+            console.log('-> ' + sql);
+            throw err;
+        }            
         console.log("1 record inserted with following SQL query:");
         console.log('-> ' + sql);
       });

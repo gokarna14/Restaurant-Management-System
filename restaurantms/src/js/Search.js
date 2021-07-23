@@ -24,12 +24,14 @@ const Search =(props)=> {
     })
 
 
-    const delTypeChange =(value)=>{
+    const typeChange =(value)=>{
+        setShowDisplay(false)
         setinfo({
             ...info,  
             key:value,
             keyType: dataType[info.table][value + " type"],
-            column: SearchKeys[info.table][value]
+            column: SearchKeys[info.table][value],
+            sql: 'SELECT * FROM ' + info.table + ' WHERE ' + SearchKeys[info.table][value] + " = '" + info.value +"'"
         });
     }
     const showMayBeItems=(e)=>{
@@ -43,18 +45,32 @@ const Search =(props)=> {
 
     }
     const valueChange =(value)=>{
+        setShowDisplay(false)
         setinfo({
             ...info, 
             value:value,
             sql: 'SELECT * FROM ' + info.table + ' WHERE ' + info.column + " = '" + value +"'" 
         });
-        setShowDisplay(false)
+        
     }
 
     const options = info.searchKeys.map(
         (i)=>{
             return(
-                <option value={i}>{i}</option>
+                <>
+                {
+                    (
+                        ()=>{
+                            if(i != 'sex'){
+                            return(
+                                <option value={i}>{i}</option>
+                            )
+                            }
+                        }
+                        
+                    )()
+                }
+                </>
             )
         }
     )
@@ -64,7 +80,7 @@ const Search =(props)=> {
             <div className="form">
                 <form style={{textAlign:'left', padding:'0% 70% 0% 3%'}}>
                     <label className="form-check-label">Search Using</label>
-                        <select className="form-control" onChange={(e)=>{delTypeChange(e.target.value)}}>
+                        <select className="form-control" onChange={(e)=>{typeChange(e.target.value)}}>
                             {options}
                         </select>
                     <label className="form-check-label">Search key</label>
