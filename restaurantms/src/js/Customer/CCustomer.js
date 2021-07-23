@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import axios from 'axios'
 
-import { CusIn, CusTypes } from '../db';
+import { SearchKeys, dataType } from '../db';
 import Information from '../Information';
 import './Customer.css'
 
@@ -9,8 +9,8 @@ import './Customer.css'
 const CCustomer =()=>{
 
 
-    const [custInformation, setCustInformation] = useState(CusIn)
-    const[cusTypes, setcusTypes] = useState(CusTypes)
+    const [custInformation, setCustInformation] = useState(SearchKeys.CUSTOMERS)
+    const[cusTypes, setcusTypes] = useState(dataType.CUSTOMERS)
 
     const inputDetect=(value, key)=>{
         const adder = {...custInformation}
@@ -22,7 +22,13 @@ const CCustomer =()=>{
         (key)=>{
             return(
                 <div className="i">
-                    <label>                    
+                {
+                    (
+                        ()=>{
+                            if(!['Customer ID'].includes(key)){
+                                return(
+                                    <div>
+                                    <label>                    
                         {key}
                     </label>
                         {
@@ -52,6 +58,12 @@ const CCustomer =()=>{
                                     }
                             )()
                         }
+                                    </div>
+                                )
+                            }
+                        }
+                    )()
+                }
                 </div>
                 )
                 
@@ -75,7 +87,7 @@ const CCustomer =()=>{
             <hr />
             <h2>Add a new customer</h2>
             <hr />
-            <div className="form">
+            <div className="aa">
                 <form style={{textAlign:'left', padding:'0% 70% 0% 3%'}}>
                     {fields}
                     <br />

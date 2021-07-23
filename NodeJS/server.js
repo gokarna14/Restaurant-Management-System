@@ -78,7 +78,8 @@ app.post('/api/add_customer', (req, res)=>{
     // res.send(sql)
     db.query(sql, function (err, result) {
         if (err) throw err;
-        console.log("1 record inserted");
+        console.log("1 record inserted with following SQL query:");
+        console.log('-> ' + sql);
       });
 })
 
@@ -109,11 +110,12 @@ app.post('/api/del_customer', (req, res)=>{
 
 app.post('/api/show_data/', (req, res)=>{
     var data = req.body;
-    console.log('Here')
     db.query(data.sql, (err, rows, fields)=>{
         if(err){
             console.log('Error in the query');
         }else{
+            console.log('Data sent with following SQL query:');
+            console.log('-> ' + data.sql);
             res.send(rows);
         }
     }) 

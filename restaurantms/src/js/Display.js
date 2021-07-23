@@ -1,16 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import axios from 'axios' 
+import { useTransition, animated } from 'react-spring'
 
 
 const Display=(props)=>{
 
-    // const [gotData, setgotData] = useState(props.gotData)
-    // useEffect(() => {
-    //     setfound(props.gotData.length > 0)
-    //   });
-    
-    console.log(props.gotData)
-    console.log(props.gotData.length > 0)
+
     
     const tableCols = (props.gotData.length > 0 ? Object.keys(props.gotData[0]) : []).map(
         (i)=>{
@@ -52,7 +46,7 @@ const Display=(props)=>{
 
 
    return(
-       <div>
+       <div style={{padding:'10%% 10% 10% 10%'}}>
            {
                (
                    ()=>{
@@ -66,7 +60,7 @@ const Display=(props)=>{
                        else{
                            return(
                                <div>
-                                   <h2>Matching data</h2>
+                                    
                                    <table className="table table-danger">
                                     <thead>
                                         <tr>

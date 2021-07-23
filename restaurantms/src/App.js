@@ -33,8 +33,6 @@ function App() {
         <AlwaysRender></AlwaysRender>
           {routeInfo}
       </BrowserRouter>
-      {/* <All></All>
-      <Example></Example> */}
     </div>
   );
 }
