@@ -19,6 +19,8 @@
         "react-router-dom": "^5.2.0",
         "react-scripts": "4.0.3",
         "react-spring": "^9.2.4",
+        "react-stick": "^4.1.4",
+        "react-sticky": "^6.0.3",
         "sweetalert": "^2.1.2",
         "web-vitals": "^1.1.2"
     },
