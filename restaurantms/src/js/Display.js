@@ -19,7 +19,7 @@ const Display=(props)=>{
             if (keys === 'dob' && props.gotData[n][keys] !== null ){
                 return(
                     <td>
-                        {props.gotData[n][keys].substring(0,9)}
+                        {props.gotData[n][keys].substring(0,8) + (parseInt(props.gotData[n][keys].substring(8,10)) + 1)}
                     </td>
                 )
             }

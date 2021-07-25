@@ -1,0 +1,12 @@
+.inf {
+    width: 50%;
+    float: right;
+    padding: 20px;
+    position: flex;
+}
+
+.aa {
+    width: 50%;
+    float: left;
+    padding: 20px;
+}

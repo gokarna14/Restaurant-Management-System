@@ -3,6 +3,7 @@ import { SearchKeys, columns, dataType } from './db'
 import axios from 'axios'
 import Display from './Display'
 import Decorate from './Decorate'
+import ComplexSearch from './ComplexSearch'
 
 /*
 props needed:
@@ -77,6 +78,8 @@ const Search =(props)=> {
 
     return(
         <div>
+        <h4>Simple Search</h4>
+        <hr />
             <div className="form">
                 <form style={{textAlign:'left', padding:'0% 70% 0% 3%'}}>
                     <label className="form-check-label">Search Using</label>
@@ -105,6 +108,7 @@ const Search =(props)=> {
                     }
                 )()
             }
+            <ComplexSearch table={props.table} ></ComplexSearch>
         </div>
     )
 }

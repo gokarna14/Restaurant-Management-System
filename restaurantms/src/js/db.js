@@ -4,11 +4,26 @@ export const SearchKeys ={
         "Middle Name": 'mname',
         "Last Name": 'lname',
         "Customer ID": 'CusID',
-        "Phone Number": 'timestamp',
+        "Phone Number": 'phoneNumber',
         "Email Address": 'emailAddress',
         "Date of birth": 'dob',
         "Address": 'address',
-        "Sex": ""
+        "Sex": "sex"
+    }
+}
+
+export const keyValue = {
+    CUSTOMERS:(defaultString)=>{
+        return{
+            "First Name": defaultString,
+            "Middle Name": defaultString,
+            "Last Name": defaultString,
+            "Customer ID": defaultString,
+            "Phone Number": defaultString,
+            "Email Address": defaultString,
+            "Date of birth": defaultString,
+            "Address": defaultString,
+        }
     }
 }
 
@@ -27,6 +42,10 @@ export const columns = {
                         }
 }
 
+export const dontIncludeInFrom ={
+    CUSTOMERS: ['Customer ID']
+}
+
 export const dataType = {
     CUSTOMERS: {
         "First Name required": true,
@@ -38,14 +57,14 @@ export const dataType = {
         "Date of birth required": true,
         "Address required": false,
 
-        "First Name class": "nav btn btn-outline-dark",
-        "Middle Name class": "nav btn btn-outline-dark",
-        "Last Name class": "nav btn btn-outline-dark",
-        "Sex class": "nav btn btn-outline-dark",
-        "Phone Number class": "nav btn btn-outline-dark",
-        "Email Address class": "nav btn btn-outline-dark",
-        "Date of birth class": "nav btn btn-outline-dark",
-        "Address class": "nav btn btn-outline-dark",
+        "First Name class": "nav btn btn-outline-secondary",
+        "Middle Name class": "nav btn btn-outline-secondary",
+        "Last Name class": "nav btn btn-outline-secondary",
+        "Sex class": "nav btn btn-outline-secondary",
+        "Phone Number class": "nav btn btn-outline-secondary",
+        "Email Address class": "nav btn btn-outline-secondary",
+        "Date of birth class": "nav btn btn-secondary",
+        "Address class": "nav btn btn-outline-secondary",
 
         "First Name id": "",
         "Middle Name id": "",
@@ -66,6 +85,6 @@ export const dataType = {
         "Address type": "address",
 
         "Sex select" : true,
-        "Sex select options": <><option>M</option><option>F</option><option>O</option></>
+        "Sex select options": <><option>--Select--</option><option>M</option><option>F</option><option>O</option></>
     }
 }
