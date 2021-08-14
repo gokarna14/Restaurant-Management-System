@@ -100,8 +100,12 @@ const Create =(props)=>{
         adder = addSQL(adder);
         console.log(adder)
         axios.post('/api/add', adder).then(res=>{
+            console.log("HEREEE")
+            console.log(res.data)
         }).catch(err=>{
+            console.log("ERROR HERE")
             console.log(err)
+            console.log(adder)
         })
         swal("DONE", "New Customer Recorded", "success");
         

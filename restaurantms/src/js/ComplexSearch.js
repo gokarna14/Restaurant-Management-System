@@ -14,7 +14,7 @@ const ComplexSearch =(props)=> {
 
     const [showDisplay, setShowDisplay] = useState(false)
     const [gotData, setgotData] = useState([])
-    const [showSearchSegment, setShowSearchSegment] = useState(false)
+    
     const [info, setinfo] = useState({
         table: props.table,
         searchParas: Object.keys(SearchKeys[props.table]),
@@ -66,7 +66,8 @@ const ComplexSearch =(props)=> {
     }
 
     const advSearch =()=>{
-        setShowSearchSegment(true)
+        props.setShowDisplay(false)
+        props.setShowSearchSegment(true)
         
     }
 
@@ -80,7 +81,7 @@ const ComplexSearch =(props)=> {
                 {
                     (
                         ()=>{
-                            if(showSearchSegment){
+                            if(props.showSearchSegment){
                                 return (
                                     <>
                                     <h3>Please input in the necessary fields, keywords to search</h3>

@@ -4,7 +4,7 @@ import { useTransition, animated } from 'react-spring'
 
 const Display=(props)=>{
 
-
+ 
     
     const tableCols = (props.gotData.length > 0 ? Object.keys(props.gotData[0]) : []).map(
         (i)=>{
@@ -61,7 +61,7 @@ const Display=(props)=>{
                            return(
                                <div>
                                     
-                                   <table className="table table-danger">
+                                   <div className="table table-primary">
                                     <thead>
                                         <tr>
                                             {tableCols}
@@ -70,7 +70,7 @@ const Display=(props)=>{
                                     <tbody>
                                         {rowRender}
                                     </tbody>
-                                </table>
+                                </div>
                                </div>
                            )
                        }

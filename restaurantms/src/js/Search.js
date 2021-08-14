@@ -3,7 +3,7 @@ import { SearchKeys, columns, dataType } from './db'
 import axios from 'axios'
 import Display from './Display'
 import Decorate from './Decorate'
-import ComplexSearch from './ComplexSearch'
+import ComplexSearch from './ComplexSearch' 
 
 /*
 props needed:
@@ -13,6 +13,7 @@ props needed:
 const Search =(props)=> {
     const [showDisplay, setShowDisplay] = useState(false)
     const [gotData, setGotData] = useState([])
+    const [showSearchSegment, setShowSearchSegment] = useState(false)
     const [info, setinfo] = useState({
         table: props.table,
         key: Object.keys(SearchKeys[props.table])[0],
@@ -36,7 +37,9 @@ const Search =(props)=> {
         });
     }
     const showMayBeItems=(e)=>{
-        e.preventDefault()
+        if (e !== null){
+            e.preventDefault()
+        }
         axios.post('/api/show_data/', info).then(res=>{
                 setGotData(res.data)
             }).catch(err=>{
@@ -76,10 +79,22 @@ const Search =(props)=> {
         }
     )
 
+    const showAll =()=>{
+        var sql = 'SELECT * FROM ' + info.table
+        axios.post('/api/show_data/', {sql:sql}).then(res=>{
+            setGotData(res.data)
+        }).catch(err=>{
+            console.log(err)
+        })
+    setShowDisplay(true)
+    setShowSearchSegment(false)
+    }
+
     return(
         <div>
         <h4>Simple Search</h4>
         <hr />
+            <button className='btn btn-secondary' onClick={showAll}>Show All</button>
             <div className="form">
                 <form style={{textAlign:'left', padding:'0% 70% 0% 3%'}}>
                     <label className="form-check-label">Search Using</label>
@@ -92,6 +107,7 @@ const Search =(props)=> {
                     <input className="btn btn-outline-danger" type="submit" value="Search" onClick={showMayBeItems}/>
                 </form>
             </div>
+                <ComplexSearch showSearchSegment={showSearchSegment} setShowSearchSegment={setShowSearchSegment} setShowDisplay={setShowDisplay} table={props.table} ></ComplexSearch>
             {
                 (
                     ()=>{
@@ -108,7 +124,7 @@ const Search =(props)=> {
                     }
                 )()
             }
-            <ComplexSearch table={props.table} ></ComplexSearch>
+            <br /><br />
         </div>
     )
 }
