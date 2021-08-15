@@ -39,12 +39,14 @@ export const columns = {
         address: "Address",
         timeStamp: "Time Stamp",
         CusID: "Customer ID [PK]"
-                        }
+            }
 }
 
 export const dontIncludeInFrom ={
     CUSTOMERS: ['Customer ID']
 }
+
+
 
 export const dataType = {
     CUSTOMERS: {
@@ -87,4 +89,8 @@ export const dataType = {
         "Sex select" : true,
         "Sex select options": <><option>--Select--</option><option>M</option><option>F</option><option>O</option></>
     }
+}
+
+export const primaryKey ={
+    CUSTOMERS: 'CusID'
 }

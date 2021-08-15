@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import Search from '../Search';
+import Search from '../Search/Search';
 import Modal from '../Modal/Modal';
 import axios from 'axios'
 import ComplexDel from './ComplexDel';

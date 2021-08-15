@@ -3,7 +3,7 @@ import '../../css/Modal.css'
 import axios from 'axios'
 import { columns } from '../db'
 
-import Display from '../Display'
+import Display from '../Display/Display'
 
 
 const Modal = (props)=>{

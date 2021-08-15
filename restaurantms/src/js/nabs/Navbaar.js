@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { NavTopics } from './NavTopics';
 import { Button, Navbar, NavDropdown } from 'react-bootstrap';
 
-import Decorate from '../Decorate';
+import Decorate from '../Display/Decorate';
 
 
 const Navbaar = ()=>{ 

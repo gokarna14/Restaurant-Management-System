@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
-import { SearchKeys, columns, dataType, keyValue } from './db'
+import { SearchKeys, columns, dataType, keyValue } from '../db'
 import axios from 'axios'
-import Display from './Display'
-import Decorate from './Decorate'
+import Display from '../Display/Display'
+import Decorate from '../Display/Decorate'
 
 /*
 props needed:

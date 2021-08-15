@@ -1,9 +1,15 @@
 import React from 'react'
+import Update from '../Update/Update';
+
 
 const UCustomer =()=>{
     return(
         <div>
-            <h1>This is Update Customer</h1>
+        <hr />
+            <h1>Update the Information</h1>
+
+            <Update table={'CUSTOMERS'} ></Update>
+
         </div>
     )
 }

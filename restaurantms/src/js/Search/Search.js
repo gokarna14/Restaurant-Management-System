@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
-import { SearchKeys, columns, dataType } from './db'
+import { SearchKeys, columns, dataType } from '../db'
 import axios from 'axios'
-import Display from './Display'
-import Decorate from './Decorate'
+import Display from '../Display/Display'
+import Decorate from '../Display/Decorate'
 import ComplexSearch from './ComplexSearch' 
 
 /*
@@ -65,7 +65,7 @@ const Search =(props)=> {
                 {
                     (
                         ()=>{
-                            if(i != 'sex'){
+                            if(i !== 'sex'){
                             return(
                                 <option value={i}>{i}</option>
                             )
@@ -115,7 +115,7 @@ const Search =(props)=> {
                             return(
                                 <div>
                                     <hr />
-                                    <Decorate style={{textAlign:'right'}} displayText={'>  SEARCH RESULT FROM PROVIDED REQUEST  <'} ></Decorate>
+                                        <h3>SEARCH RESULT</h3>
                                     <hr />
                                     <Display gotData={gotData} db2n={columns[info.table]}></Display>
                                 </div>
