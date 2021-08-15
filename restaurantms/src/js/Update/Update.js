@@ -2,12 +2,12 @@ import React, { useState } from 'react'
 import { SearchKeys, dataType, primaryKey, dontIncludeInFrom } from '../db'
 import axios from 'axios'
 import swal from 'sweetalert'
+import Search from '../Search/Search'
 
 
 
 const Update = (props) =>{
 
-    const [sql, setSQL] = useState('')
     const [id, setID] = useState('')
     const [nextStep, setNextStep] = useState(false)
     const [changedValues, setChangedValues] = useState({})
@@ -15,6 +15,7 @@ const Update = (props) =>{
     const [whereValues, setWhereValues] = useState({})
     const [confirmIDUpdate, setcidu] = useState(false)
     const [multipleUpdate, setMultipleUpdate] = useState(false)
+    const [showSearch, setShowSearch] = useState(false)
 
     const idUpdate =(e)=>{
         e.preventDefault()
@@ -212,7 +213,7 @@ const Update = (props) =>{
             </div>
             <div className="updateWithQuery">
                 <h2>OR</h2>
-                <button className='btn btn-dark' onClick={()=>{setMultipleUpdate(true);setcidu(false); setNextStep(false);}} >Perform Multiple Updates</button>
+                <button className='btn btn-dark' onClick={()=>{setMultipleUpdate(true);setcidu(false); setNextStep(false); setShowSearch(false);}} >Perform Multiple Updates</button>
                 <hr />
                 {multipleUpdate && <>
                     <h3>MULTIPLE UPDATE SECTION</h3>
@@ -237,8 +238,16 @@ const Update = (props) =>{
                 </>
                 }
             </div>
-            
-                <br />
+            <div style={{padding:'3% 3% 3% 3%'}} >
+                <button className='btn btn-primary' onClick={()=>{setShowSearch(true)}} >Search for {props.table} ID</button>
+                <hr />
+                {showSearch && <div>
+                    <button className='btn btn-danger' onClick={()=>{setShowSearch(false)}} >Hide Search Panel</button>
+                    <hr />
+                    <Search table={props.table}></Search>  
+                </div> }
+                
+            </div>
         </div>
     )
 }

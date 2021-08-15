@@ -56,7 +56,7 @@ const Modal = (props)=>{
             </div>
                 {showDisplay &&
                         <>
-                            <div className='btn-outline-danger' style={{fontSize:'85%', overflowY:'scroll'}}>
+                            <div className='btn-danger' style={{fontSize:'85%', overflowY:'scroll'}}>
                             <p><Display db2n={columns[props.table]} gotData={gotData} ></Display></p>
                                 
                             </div> 

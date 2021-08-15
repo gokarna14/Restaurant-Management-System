@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import Search from '../Search/Search';
 import Modal from '../Modal/Modal';
-import axios from 'axios'
+import axios from 'axios';
 import ComplexDel from './ComplexDel';
 import swal from 'sweetalert';
 
@@ -29,15 +29,11 @@ const Delete=(props)=>{
         axios.post('/api/execute/', {sql:sql}).then(res=>{
             setGotData(res.data)
             console.log(gotData)
+            swal("Done", JSON.stringify(res.data), "success");
         }).catch(err=>{
             console.log(err)
+            swal("Bad Request", "ERROR", "error");
         })
-        if(gotData.affectedRows === 0){
-            swal("Bad Request", "No data found with such request", "error");
-        }
-        else{
-            swal("DONE", "Your request was successful", "success");
-        }
         setOpenModel(false)
     }
 
