@@ -107,14 +107,14 @@ const Create =(props)=>{
             console.log(err)
             console.log(adder)
         })
-        swal("DONE", "New Customer Recorded", "success");
+        swal("DONE", "New " + props.table + " Recorded", "success");
         
     }
 
     return(
         <div>
             <hr />
-            <h2>Add a new customer</h2>
+            <h2>Add a new {props.table}</h2>
             <hr />
             <div className="aa">
                 <form style={{textAlign:'left', padding:'0% 70% 0% 3%'}} onSubmit={addCustomer}>

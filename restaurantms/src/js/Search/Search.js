@@ -59,7 +59,7 @@ const Search =(props)=> {
     }
 
     const options = info.searchKeys.map(
-        (i)=>{
+        (i)=>{ 
             return(
                 <>
                 {

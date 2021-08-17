@@ -9,6 +9,18 @@ export const SearchKeys ={
         "Date of birth": 'dob',
         "Address": 'address',
         "Sex": "sex"
+    },
+    WAITER:{
+        'Full Name': "name",
+        "Date of birth":"dob", 
+        "Phone Number": 'phoneNumber',
+        "Waiter ID": 'WaiterID'
+    },
+    CHEF:{
+        'Full Name': "name",
+        "Date of birth":"dob", 
+        "Phone Number": 'phoneNumber',
+        "Chef ID": 'ChefID'
     }
 }
 
@@ -39,14 +51,30 @@ export const columns = {
         address: "Address",
         timeStamp: "Time Stamp",
         CusID: "Customer ID [PK]"
-            }
+            },
+    WAITER:{
+        name: 'Full Name',
+        dob: "Date of birth",
+        timeStamp: "Time Stamp",
+        WaiterID: "Waiter ID",
+        phoneNumber: "Phone Number",
+    },
+    CHEF:{
+        name: 'Full Name',
+        dob: "Date of birth",
+        timeStamp: "Time Stamp",
+        ChefID: "Waiter ID",
+        phoneNumber: "Phone Number",
+    }
+
 }
 
 export const dontIncludeInFrom ={
-    CUSTOMERS: ['Customer ID']
+    CUSTOMERS: ['Customer ID'],
+    ORDER_: [],
+    WAITER: ['Waiter ID'],
+    CHEF: ['Chef ID']
 }
-
-
 
 export const dataType = {
     CUSTOMERS: {
@@ -88,8 +116,26 @@ export const dataType = {
 
         "Sex select" : true,
         "Sex select options": <><option>--Select--</option><option>M</option><option>F</option><option>O</option></>
+    
+    },
+    WAITER:{
+        "Full Name type": 'text',
+        "Date of birth type": "date",
+        "Phone Number type": "text",
+        "Phone Number class": "nav btn btn-light",
+        "Date of birth class": "nav btn btn-light",
+        "Full Name class": "nav btn btn-light",
+    },
+    CHEF:{
+        "Full Name type": 'text',
+        "Date of birth type": "date",
+        "Phone Number type": "text",
+        "Phone Number class": "nav btn btn-light",
+        "Date of birth class": "nav btn btn-light",
+        "Full Name class": "nav btn btn-light",
     }
 }
+
 
 export const primaryKey ={
     CUSTOMERS: 'CusID'

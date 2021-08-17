@@ -79,10 +79,6 @@ const Update = (props) =>{
         }
     }
 
-    const backendProcess =(sql)=>{
-        
-    }
-
     const applyChanges=(e)=>{
         e.preventDefault()
         var sql = 'UPDATE ' + props.table + ' SET '
@@ -111,9 +107,9 @@ const Update = (props) =>{
             sql += (SearchKeys[props.table][i] + " = '" + whereValues[i] + "' AND ") 
         }
         sql = sql.slice(0, -4)
-        console.log(setValues)
-        console.log(whereValues)
-        console.log(sql)
+        // console.log(setValues)
+        // console.log(whereValues)
+        // console.log(sql)
         axios.post('/api/execute/', {sql:sql}).then(res=>{
             swal('DONE', 'Operation Successful with:\n' + JSON.stringify(res.data.message).slice(2, -1), 'success')
         }).catch(err=>{

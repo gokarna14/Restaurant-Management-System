@@ -8,6 +8,7 @@ import AlwaysRender from './js/AlwaysRender'
 import CustomerIndex from './js/Customer/CustomerIndex';
 import StatusIndex from './js/Status/StatusIndex';
 import OrderIndex from './js/Order/OrderIndex';
+import EmployeeIndex from './js/Employee/EmplyeeIndex';
 
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
     [CustomerDomain, CustomerIndex],
     ['/Order', OrderIndex],
     ['/Status', StatusIndex],
+    ['/Employee', EmployeeIndex]
 ])
 
   const routeInfo = routing.map(

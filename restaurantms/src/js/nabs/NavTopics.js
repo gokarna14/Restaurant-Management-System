@@ -26,6 +26,12 @@ export const NavTopics = [
         class: class_, 
         variant: variant
     },
+    {
+        path:'/Employee',
+        label: 'Employee',
+        class: class_,
+        variant: variant
+    }
     
 ]
 
