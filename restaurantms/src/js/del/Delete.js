@@ -4,6 +4,7 @@ import Modal from '../Modal/Modal';
 import axios from 'axios';
 import ComplexDel from './ComplexDel';
 import swal from 'sweetalert';
+import { primaryKey } from '../db';
 
 
 // props: table, primaryKeyName
@@ -20,26 +21,37 @@ const Delete=(props)=>{
     const [sql, setSQL] = useState('')
     const [showDelAll, setShowDelAll] = useState(false)
 
+    const resetAll=()=>{
+        setComplexSql('')
+        setSearchForCusID(false)
+        setDelID('')
+        setGotData([])
+        setOpenModel(false)
+        setSQL('')
+        setShowComplexDel(false)
+        setShowDelAll(false)
+        setStyle1({position:'sticky', top:'10%'})
+    }
+
     const deleteClicked =()=>{
         setStyle1({})
         setOpenModel(true)
     }
 
     const backEND=(sql)=>{
+        console.log(sql)
         axios.post('/api/execute/', {sql:sql}).then(res=>{
             setGotData(res.data)
             console.log(gotData)
             swal("Done", JSON.stringify(res.data), "success");
         }).catch(err=>{
             console.log(err)
-            swal("Bad Request", "ERROR", "error");
         })
-        setOpenModel(false)
+        resetAll()
     }
 
     const delWithID =()=>{
-        setSQL("DELETE FROM " + props.table + " WHERE " + props.primaryKeyName + " = '" + delID + "'")
-        backEND(sql)
+        backEND("DELETE FROM " + props.table + " WHERE " + primaryKey[props.table] + " = '" + delID + "'")
         closeModal()
     }
 
@@ -67,7 +79,7 @@ const Delete=(props)=>{
     return(
         <div>
             <hr />
-            {openModal && <Modal complexSql={complexSql} table={props.table} primaryKeyName={props.primaryKeyName} complexDelz={complexDel}  complexDel={showComplexDel} closeModal={closeModal} delID={delID} delWithID={delWithID}></Modal>}
+            {openModal && <Modal complexSql={complexSql} table={props.table} primaryKeyName={primaryKey[props.table]} complexDelz={complexDel}  complexDel={showComplexDel} closeModal={closeModal} delID={delID} delWithID={delWithID}></Modal>}
                 <div className='inf1' style={style1}>
                     {!showComplexDel && <> 
                         <label className="form-check-label">Enter {props.table} ID to delete</label>
@@ -75,7 +87,7 @@ const Delete=(props)=>{
                         <button className='btn btn-outline-danger' onClick={deleteClicked}>DELETE</button> 
                     </>}
                     <hr />
-                    <button className='btn btn-primary' onClick={()=>{setSearchForCusID(true);setShowComplexDel(false);setStyle1({position:'sticky', top:'10%'});}} >Search for Customer ID</button>
+                    <button className='btn btn-primary' onClick={()=>{setSearchForCusID(true);setShowComplexDel(false);setStyle1({position:'sticky', top:'10%'});}} >Search for {props.table} ID</button>
                     <hr />
                     <button className='btn btn-dark' onClick={()=>{setShowComplexDel(true);setSearchForCusID(false);setStyle1({});}} >Delete with other option</button>
                     <hr />
@@ -95,10 +107,10 @@ const Delete=(props)=>{
                                         <br />
                                         <h3>Search for {props.table} ID</h3>
                                         <hr />
-                                        <Search table={'CUSTOMERS'}></Search>
+                                        <Search table={props.table}></Search>
                                     </div>}
                 {showComplexDel && <div>
-                                        <ComplexDel setComplexSql={setComplexSql} table={'CUSTOMERS'} backEND={backEND} deleteClicked={deleteClicked} setOpenModel={setOpenModel} ></ComplexDel>
+                                        <ComplexDel setComplexSql={setComplexSql} table={props.table} backEND={backEND} deleteClicked={deleteClicked} setOpenModel={setOpenModel} ></ComplexDel>
                                     </div>}
                 
         </div>

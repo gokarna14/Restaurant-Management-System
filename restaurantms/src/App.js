@@ -6,10 +6,9 @@ import { useState } from 'react';
 // import All from './js/All';
 import AlwaysRender from './js/AlwaysRender'
 import CustomerIndex from './js/Customer/CustomerIndex';
-import StatusIndex from './js/Status/StatusIndex';
 import OrderIndex from './js/Order/OrderIndex';
 import EmployeeIndex from './js/Employee/EmplyeeIndex';
-
+import ResourcesIndex from './js/Resources/ResourcesIndex';
 
 function App() {
 
@@ -18,7 +17,7 @@ function App() {
   const [routing, setRouting] = useState([    // [path, component]
     [CustomerDomain, CustomerIndex],
     ['/Order', OrderIndex],
-    ['/Status', StatusIndex],
+    ['/Resources', ResourcesIndex],
     ['/Employee', EmployeeIndex]
 ])
 

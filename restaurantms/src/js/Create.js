@@ -25,7 +25,7 @@ const Create =(props)=>{
 
     const fields = Object.keys(SearchKeys[props.table]).map(
         (key)=>{
-            return(
+            return( 
                 <div className="i">
                 {
                     (
@@ -116,16 +116,16 @@ const Create =(props)=>{
             <hr />
             <h2>Add a new {props.table}</h2>
             <hr />
-            <div className="aa">
+            <div className={props.float===undefined ? "aa" : ''}>
                 <form style={{textAlign:'left', padding:'0% 70% 0% 3%'}} onSubmit={addCustomer}>
                     {fields}
                     <br />
                     <input className="btn btn-outline-danger" type="submit" value="ADD"/>
                 </form>
             </div>
-            <div className="inf">
+            {(props.showInf === undefined) && <div className="inf">
                     <Information></Information>
-            </div>
+            </div>}
             
         </div>
     )

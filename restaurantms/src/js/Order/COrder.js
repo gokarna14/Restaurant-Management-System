@@ -1,87 +1,66 @@
 import React, { useState } from 'react'
 import axios from 'axios'
 import Search from '../Search/Search'
+import SelectOptions from '../SelectOptions'
+import { primaryKey } from '../db'
+import swal from 'sweetalert'
 
 
 const COrder =()=>{
-    const [showDisplay, setShowDisplay] = useState(false)
-    const [gotData, setGotData] = useState([])
-    const [fk, setfk] =useState([])
-    const [FK, setFK] = useState('')
-    const [showSearchOption, setShowSearchOption] = useState(false)
 
-    const getData=()=>{
-        var sql = "SELECT CusID FROM CUSTOMERS;"
-        axios.post('/api/show_data/', {sql:sql}).then(res=>{
-            setGotData(res.data)
-            console.log(res.data)
-        }).catch(err=>{
-            console.log(err)
-        })
+    const [info, setInfo] = useState({})
+    const [formShow, setFormShow] = useState(true)
+    const [selectTables, setST] =  useState(['CUSTOMERS', 'WAITER'])
 
-        var temp = []
-
-        for (var i in gotData){
-            temp.push(gotData[i]['CusID'])
+    const submitFunction=(info)=>{
+        var valid = (info['FK'].length  === info['table'].length && !(info['FK'].includes('') || info['table'].includes('')))
+       // setFormShow(!valid)
+        if(!valid){
+            swal('ERROR', 'PLEASE PROVIDE ALL THE INPUT', 'error')
+        }
+        else{
+            var sql = 'INSERT INTO ' + info.mainTable + " ("
+            for (var i=0; i<info['FK'].length; i++){
+                sql += primaryKey[info['table'][i]] + ', '
+            }
+            sql = sql.slice(0, -2)
+            sql += ") VALUES ("
+            for (i=0; i<info['FK'].length; i++){
+                sql += "'" + info['FK'][i] + "',"
+            }
+            sql = sql.slice(0, -1)
+            sql += ");"
+            console.log(sql)
+            axios.post('/api/add', {sql:sql}).then((res)=>{
+                swal('DONE', 'NEW ' + info.mainTable + ' REGISTERED', 'success')
+            }).catch(err=>{
+                console.log(err)
+            })
         }
 
-        setShowDisplay(true)
-        setfk(temp)
-        console.log(fk)
     }
 
-    const CusidDD = Object.keys(gotData).map(
-            (key)=>{
-                return (
-                    <>
-                        <option>{gotData[key]['CusID']}</option>
-                    </>
-                )
-            }
-    )
-
-
     return(
-        <div>
-            <hr />
-                <button onClick={getData} className='btn btn-danger' >Create A New Order</button>
-            <hr />
-                {showDisplay &&
-                <>
-                    <div className="aa">
-                        <form onSubmit={(e)=>{e.preventDefault()}}>
-                            <div  class="input-group-prepend" >
-                                <span class="input-group-text">Select Customer ID</span>
-                            </div>
-                                <select class="form-control" onChange={(e)=>{if(e.target.value === "--SELECT--"){setFK('')}else{setFK(e.target.value)}}}>
-                                    <option>--SELECT--</option> {CusidDD}
-                                </select> 
-                                <hr />
-                                <div style={{textAlign:'left'}}>
-                                    <form>
-                                        <button type='submit' className='btn btn-outline-danger'>Discard</button>
-                                    </form>
-                                    <br />
-                                    <button  className='btn btn-outline-success'>Register and proceed</button>
-                                </div>
-                                <hr />
-                        </form>
-                        
-                    </div>
-                    <div className='inf'>
-                        <button className='btn btn-primary' onClick={()=>{setShowSearchOption(true)}}>Search For CustomerID</button>
-                            <br /> <hr />
-                            {showSearchOption && 
-                            <>
-                                <Search table={'CUSTOMERS'} ></Search>
-                            </>
-                            
-                            }
-                    </div>
-                </>
-                }
-        </div>
+        <>
+            { formShow &&
+                <div>
+                    <SelectOptions submitFunction={submitFunction} mainTable={'ORDER_'} selectTable={selectTables} ></SelectOptions>
+                </div>
+            }
+            {!formShow &&
+            <div>
+                <hr />
+                        <button className='btn btn-dark' onClick={()=>{setFormShow(true)}}>
+                            Register Another Order
+                        </button>
+                <hr />
+            </div>
+            }
+            <div>
+                <button>Add a new DISH</button>
+            </div>
+        </>
     )
 }
 
-export default COrder; 
+export default COrder;  

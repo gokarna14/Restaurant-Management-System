@@ -13,6 +13,7 @@ props needed:
 const Search =(props)=> {
     const [showDisplay, setShowDisplay] = useState(false)
     const [gotData, setGotData] = useState([])
+    const [show, setShow] = useState(true)
     const [showSearchSegment, setShowSearchSegment] = useState(false)
     const [info, setinfo] = useState({
         table: props.table,
@@ -91,41 +92,47 @@ const Search =(props)=> {
     }
 
     return(
-        <div>
-        <h4>Simple Search</h4>
+        <>
+        <button className={'btn btn-' + (show ? 'danger': 'primary')} onClick={()=>{setShow(!show)}}>
+            {show ? 'HIDE' : 'SHOW'} Search Segment: {props.table}
+        </button>
+        {show && <div>
         <hr />
-            <button className='btn btn-secondary' onClick={showAll}>Show All</button>
-            <div className="form">
-                <form style={{textAlign:'left', padding:'0% 70% 0% 3%'}}>
-                    <label className="form-check-label">Search Using</label>
-                        <select className="form-control" onChange={(e)=>{typeChange(e.target.value)}}>
-                            {options}
-                        </select>
-                    <label className="form-check-label">Search key</label>
-                        <input className="form-control" type={info.keyType} onChange={(e)=>{valueChange(e.target.value)}}/>
-                    <br />
-                    <input className="btn btn-outline-danger" type="submit" value="Search" onClick={showMayBeItems}/>
-                </form>
-            </div>
-                <ComplexSearch showSearchSegment={showSearchSegment} setShowSearchSegment={setShowSearchSegment} setShowDisplay={setShowDisplay} table={props.table} ></ComplexSearch>
-            {
-                (
-                    ()=>{
-                        if(showDisplay){
-                            return(
-                                <div>
-                                    <hr />
-                                        <h3>SEARCH RESULT</h3>
-                                    <hr />
-                                    <Display gotData={gotData} db2n={columns[info.table]}></Display>
-                                </div>
-                            )
+            <h4>Simple Search: {props.table}</h4>
+            <hr />
+                <button className='btn btn-secondary' onClick={showAll}>Show All</button>
+                <div className="form">
+                    <form style={{textAlign:'left', padding:'0% 70% 0% 3%'}}>
+                        <label className="form-check-label">Search Using</label>
+                            <select className="form-control" onChange={(e)=>{typeChange(e.target.value)}}>
+                                {options}
+                            </select>
+                        <label className="form-check-label">Search key</label>
+                            <input className="form-control" type={info.keyType} onChange={(e)=>{valueChange(e.target.value)}}/>
+                        <br />
+                        <input className="btn btn-outline-danger" type="submit" value="Search" onClick={showMayBeItems}/>
+                    </form>
+                </div>
+                    <ComplexSearch showSearchSegment={showSearchSegment} setShowSearchSegment={setShowSearchSegment} setShowDisplay={setShowDisplay} table={props.table} ></ComplexSearch>
+                {
+                    (
+                        ()=>{
+                            if(showDisplay){
+                                return(
+                                    <div>
+                                        <hr />
+                                            <h3 style={{textAlign:'left'}}>SEARCH RESULT : {props.table}</h3>
+                                        <hr />
+                                        <Display gotData={gotData} db2n={columns[info.table]}></Display>
+                                    </div>
+                                )
+                            }
                         }
-                    }
-                )()
-            }
+                    )()
+                }
             <br /><br />
-        </div>
+        </div>}
+        </>
     )
 }
 

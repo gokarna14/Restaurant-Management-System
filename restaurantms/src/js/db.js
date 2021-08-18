@@ -21,6 +21,21 @@ export const SearchKeys ={
         "Date of birth":"dob", 
         "Phone Number": 'phoneNumber',
         "Chef ID": 'ChefID'
+    },
+    MENU:{
+        'Menu Number': 'MenuNumber',
+        'Menu Name': 'MenuName'
+    },
+    MenuCategory:{
+        'Category Name': 'CategoryName',
+        'Menu Number': 'MenuNumber',
+        'Category ID': "CategoryID"
+    },
+    DISH:{
+        'Category ID': "CategoryID",
+        "Chef ID": 'ChefID',
+        'Dish Name': 'DishName',
+        'Dish ID': "DishID"
     }
 }
 
@@ -35,6 +50,42 @@ export const keyValue = {
             "Email Address": defaultString,
             "Date of birth": defaultString,
             "Address": defaultString,
+        }
+    },
+    WAITER:(defaultString)=>{
+        return{
+            'Full Name': defaultString,
+            "Date of birth":defaultString, 
+            "Phone Number": defaultString,
+            "Waiter ID": defaultString
+        }
+    },
+    CHEF:(defaultString)=>{
+        return{
+            'Full Name':defaultString,
+            "Date of birth":defaultString, 
+            "Phone Number": defaultString,
+            "Chef ID": defaultString
+        }
+    },
+    MENU:(defaultString)=>{
+        return{
+            'Menu Number':defaultString,
+            'Menu Name': defaultString
+        }
+    },
+    MenuCategory:(defaultString)=>{
+        return{
+            'Category Name':defaultString,
+            'Menu Number': defaultString
+        }
+    },
+    DISH:(defaultString)=>{
+        return{
+            'Category ID': defaultString,
+            "Chef ID": defaultString,
+            'Dish Name': defaultString,
+            'Dish ID': defaultString,
         }
     }
 }
@@ -55,16 +106,32 @@ export const columns = {
     WAITER:{
         name: 'Full Name',
         dob: "Date of birth",
-        timeStamp: "Time Stamp",
+        timestamp: "Time Stamp",
         WaiterID: "Waiter ID",
         phoneNumber: "Phone Number",
     },
     CHEF:{
         name: 'Full Name',
         dob: "Date of birth",
-        timeStamp: "Time Stamp",
-        ChefID: "Waiter ID",
+        timestamp: "Time Stamp",
+        ChefID: "Chef ID",
         phoneNumber: "Phone Number",
+    },
+    MENU:{
+        MenuNumber:'Menu Number',
+        MenuName: 'Menu Name',
+        timestamp: "Time Stamp",
+    },
+    MenuCategory:{
+        MenuNumber:'Menu Number',
+        CategoryID: 'Category ID',
+        CategoryName:'Category Name'
+    },
+    DISH:{
+        DishName:'Dish Name',
+        ChefID: "Waiter ID",
+        CategoryID: 'Category ID',
+        DishID: 'DishID'
     }
 
 }
@@ -73,7 +140,10 @@ export const dontIncludeInFrom ={
     CUSTOMERS: ['Customer ID'],
     ORDER_: [],
     WAITER: ['Waiter ID'],
-    CHEF: ['Chef ID']
+    CHEF: ['Chef ID'],
+    MENU:['Menu Number'],
+    MenuCategory:['Menu Number', 'Category ID'],
+    DISH: []
 }
 
 export const dataType = {
@@ -133,10 +203,24 @@ export const dataType = {
         "Phone Number class": "nav btn btn-light",
         "Date of birth class": "nav btn btn-light",
         "Full Name class": "nav btn btn-light",
-    }
+    },
+    MENU:{
+
+    },
+    MenuCategory:{
+
+    },
+    DISH:{
+
+    },
 }
 
 
 export const primaryKey ={
-    CUSTOMERS: 'CusID'
+    CUSTOMERS: 'CusID',
+    WAITER: 'WaiterID',
+    CHEF: 'ChefID',
+    MENU: 'MenuNumber',
+    MenuCategory: 'CategoryID',
+    DISH: 'DishID'
 }

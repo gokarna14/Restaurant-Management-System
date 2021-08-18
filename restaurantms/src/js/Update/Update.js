@@ -17,6 +17,17 @@ const Update = (props) =>{
     const [multipleUpdate, setMultipleUpdate] = useState(false)
     const [showSearch, setShowSearch] = useState(false)
 
+    const resetAll =()=>{
+        setID('')
+        setNextStep(false)
+        setChangedValues({})
+        setSetValues({})
+        setWhereValues({})
+        setcidu(false)
+        setMultipleUpdate(false)
+        setShowSearch(false)
+    }
+
     const idUpdate =(e)=>{
         e.preventDefault()
         setMultipleUpdate(false)
@@ -89,6 +100,7 @@ const Update = (props) =>{
         sql += " WHERE " + primaryKey[props.table] + "= '" + id + "'"
         axios.post('/api/execute/', {sql:sql}).then(res=>{
             swal('DONE', 'Operation Successful with:\n' + JSON.stringify(res.data.message).slice(2, -1), 'success')
+            resetAll()
         }).catch(err=>{
             console.log(err)
             swal('Failed', err, 'Error')

@@ -21,8 +21,8 @@ export const NavTopics = [
         variant: variant
     },
     {
-        path: '/Status', 
-        label: 'Status', 
+        path: '/Resources', 
+        label: 'Resources', 
         class: class_, 
         variant: variant
     },
