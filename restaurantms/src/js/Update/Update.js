@@ -102,8 +102,8 @@ const Update = (props) =>{
             swal('DONE', 'Operation Successful with:\n' + JSON.stringify(res.data.message).slice(2, -1), 'success')
             resetAll()
         }).catch(err=>{
+            swal('Failed', err.sqlMessage, 'error')
             console.log(err)
-            swal('Failed', err, 'Error')
         })
     }
 
@@ -126,7 +126,7 @@ const Update = (props) =>{
             swal('DONE', 'Operation Successful with:\n' + JSON.stringify(res.data.message).slice(2, -1), 'success')
         }).catch(err=>{
             console.log(err)
-            swal('Failed', err, 'Error')
+            swal('Failed', 'err', 'Error')
         })
     }
 
@@ -247,11 +247,9 @@ const Update = (props) =>{
                 }
             </div>
             <div style={{padding:'3% 3% 3% 3%'}} >
-                <button className='btn btn-primary' onClick={()=>{setShowSearch(true)}} >Search for {props.table} ID</button>
+                <button className='btn btn-primary' onClick={()=>{setShowSearch(!showSearch)}} >Search for {props.table} ID</button>
                 <hr />
                 {showSearch && <div>
-                    <button className='btn btn-danger' onClick={()=>{setShowSearch(false)}} >Hide Search Panel</button>
-                    <hr />
                     <Search table={props.table}></Search>  
                 </div> }
                 

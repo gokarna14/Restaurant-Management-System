@@ -1,9 +1,11 @@
 import React from 'react'
+import Search from '../Search/Search';
 
 const COrder =()=>{
     return(
         <div>
-            <h1>This is Read Order</h1>
+            <hr />
+            <Search table={'ORDER_'} ></Search>
         </div>
     )
 }

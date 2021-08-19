@@ -11,6 +11,7 @@ const CResources = ()=>{
 
     const [info, setInfo] = useState({})
     const [formShow, setFormShow] = useState(true)
+    const [menu, setMenu] = useState(false)
     const [selectTables, setST] =  useState(['MENU'])
     const [additionalFields, setAF] = useState(
         [
@@ -57,9 +58,11 @@ const CResources = ()=>{
 
     return(
         <div>
-            <div>
+        <hr />
+            <button className='btn btn-danger' onClick={()=>{setMenu(!menu)}}>Register A Menu</button>
+           { menu && <div>
                 <Create float={''} showInf={''} table={'MENU'} ></Create>
-            </div>
+            </div>}
             <div>
                 <SelectOptions
                 create={true} 
@@ -70,6 +73,12 @@ const CResources = ()=>{
                 ></SelectOptions>
             </div>
             <Dish></Dish>
+            <SelectOptions
+                mainTable={'TABLE_'}
+                selectTable={['WAITER', 'ORDER_']}
+                additionalFields={['Capacity']}
+                submitFunction={submitFunction}
+            ></SelectOptions>
         </div>
     )
 }

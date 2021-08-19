@@ -1,9 +1,11 @@
 import React from 'react'
+import Delete from '../del/Delete';
+
 
 const COrder =()=>{
     return(
         <div>
-            <h1>This is Delete Order</h1>
+            <Delete table={'ORDER_'} ></Delete>
         </div>
     )
 }

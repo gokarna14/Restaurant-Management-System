@@ -10,7 +10,10 @@ const COrder =()=>{
 
     const [info, setInfo] = useState({})
     const [formShow, setFormShow] = useState(true)
+    const [afterNewOrder, setAfterNewOrder] = useState(false)
     const [selectTables, setST] =  useState(['CUSTOMERS', 'WAITER'])
+    const[showAddDish, setShowAddDish] = useState(false)
+
 
     const submitFunction=(info)=>{
         var valid = (info['FK'].length  === info['table'].length && !(info['FK'].includes('') || info['table'].includes('')))
@@ -37,11 +40,13 @@ const COrder =()=>{
                 console.log(err)
             })
         }
+        setAfterNewOrder(true)
 
     }
 
     return(
         <>
+        <div>
             { formShow &&
                 <div>
                     <SelectOptions submitFunction={submitFunction} mainTable={'ORDER_'} selectTable={selectTables} ></SelectOptions>
@@ -56,9 +61,26 @@ const COrder =()=>{
                 <hr />
             </div>
             }
+        </div>
+        <div style={{textAlign:'left', marginTop: (formShow ? '20%' : '0') }} >
             <div>
-                <button>Add a new DISH</button>
+                <button className='btn btn-primary' onClick={()=>{setShowAddDish(!showAddDish)}}>ADD FOOD ITEMS TO THE ORDER</button>
+                    {/* { showAddDish && <div>
+                    <br />
+                        <Search table={'ORDER_'} ></Search>
+                    </div>} */}
+                {
+                    showAddDish &&
+                    <>
+                        <div>
+                                <SelectOptions submitFunction={submitFunction} mainTable={'CONTAINS'} selectTable={['DISH', 'ORDER_']}  ></SelectOptions>
+                        </div>
+                    </>
+                }
             </div>
+        </div>
+
+
         </>
     )
 }

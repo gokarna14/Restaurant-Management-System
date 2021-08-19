@@ -36,6 +36,19 @@ export const SearchKeys ={
         "Chef ID": 'ChefID',
         'Dish Name': 'DishName',
         'Dish ID': "DishID"
+    },
+    ORDER_:{
+        'Order ID': 'OrderID',
+        "Customer ID": 'CusID',
+        "Completed": 'completed',
+        "Waiter ID": 'WaiterID'
+    },
+    TABLE_:{
+        'Table Number':'TableNumber',
+        "Waiter ID": 'WaiterID',
+        'Order ID': 'OrderID',
+        'Capacity': 'Capacity'
+
     }
 }
 
@@ -87,6 +100,22 @@ export const keyValue = {
             'Dish Name': defaultString,
             'Dish ID': defaultString,
         }
+    },
+    ORDER_:(defaultString)=>{
+        return{
+            'Order ID': defaultString,
+            "Customer ID":defaultString,
+            "Completed": defaultString,
+            "Waiter ID": defaultString        
+        }
+    },
+    TABLE_:(defaultString)=>{
+       return {
+        'Table Number':defaultString,
+        "Waiter ID": defaultString,
+        'Order ID': defaultString,
+        'Capacity': defaultString,
+        }
     }
 }
 
@@ -132,6 +161,19 @@ export const columns = {
         ChefID: "Waiter ID",
         CategoryID: 'Category ID',
         DishID: 'DishID'
+    },
+    ORDER_:{
+        OrderID:'Order ID',
+        CusID:'Customer ID',
+        timestamp: "Time Stamp",
+        completed: 'Completed',
+        WaiterID: 'Waiter ID'
+    },
+    TABLE_:{
+        TableNumber: 'Table Number',
+        WaiterID: 'Waiter ID',
+        OrderID: 'Order ID',
+        Capacity: 'Capacity'
     }
 
 }
@@ -204,15 +246,11 @@ export const dataType = {
         "Date of birth class": "nav btn btn-light",
         "Full Name class": "nav btn btn-light",
     },
-    MENU:{
-
-    },
-    MenuCategory:{
-
-    },
-    DISH:{
-
-    },
+    MENU:{ },
+    MenuCategory:{},
+    DISH:{},
+    ORDER_:{},
+    TABLE_:{}
 }
 
 
@@ -222,5 +260,7 @@ export const primaryKey ={
     CHEF: 'ChefID',
     MENU: 'MenuNumber',
     MenuCategory: 'CategoryID',
-    DISH: 'DishID'
+    DISH: 'DishID',
+    ORDER_: 'OrderID',
+    TABLE_:'TableNumber'
 }

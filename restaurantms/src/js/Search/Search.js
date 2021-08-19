@@ -13,7 +13,7 @@ props needed:
 const Search =(props)=> {
     const [showDisplay, setShowDisplay] = useState(false)
     const [gotData, setGotData] = useState([])
-    const [show, setShow] = useState(true)
+    const [show, setShow] = useState(false)
     const [showSearchSegment, setShowSearchSegment] = useState(false)
     const [info, setinfo] = useState({
         table: props.table,
@@ -97,6 +97,7 @@ const Search =(props)=> {
             {show ? 'HIDE' : 'SHOW'} Search Segment: {props.table}
         </button>
         {show && <div>
+        <div className='aa'>
         <hr />
             <h4>Simple Search: {props.table}</h4>
             <hr />
@@ -114,6 +115,8 @@ const Search =(props)=> {
                     </form>
                 </div>
                     <ComplexSearch showSearchSegment={showSearchSegment} setShowSearchSegment={setShowSearchSegment} setShowDisplay={setShowDisplay} table={props.table} ></ComplexSearch>
+            </div>
+            <div className='inf'>
                 {
                     (
                         ()=>{
@@ -131,6 +134,7 @@ const Search =(props)=> {
                     )()
                 }
             <br /><br />
+            </div>
         </div>}
         </>
     )

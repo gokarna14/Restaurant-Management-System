@@ -103,7 +103,7 @@ const SelectOptions=(props)=>{
     return(
         <div>
             <hr />
-                <button onClick={()=>{setShowDisplay(!showDisplay)}} className='btn btn-danger' >Create A New {props.mainTable}</button>
+                <button onClick={()=>{setShowDisplay(!showDisplay)}} className='btn btn-danger' >Register A New {props.mainTable}</button>
             <hr />
                 {showDisplay &&
                 <>
@@ -134,10 +134,10 @@ const SelectOptions=(props)=>{
                                 {
                                     props.selectTable.map(
                                        (key)=>{ return(
-                                            <>
+                                            <div>
                                             <hr />
                                             {showSearchOption && <Search table={key} ></Search>}
-                                            </>
+                                            </div>
                                         )}
                                         
                                     )

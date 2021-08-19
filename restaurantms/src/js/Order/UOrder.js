@@ -1,10 +1,16 @@
-import React from 'react'
+import React, { useState } from 'react'
+import Update from '../Update/Update';
 
 const COrder =()=>{
+
+
     return(
+    <>
         <div>
-            <h1>This is Update Order</h1>
+            <hr />
+            <Update table={'ORDER_'} ></Update>
         </div>
+    </>
     )
 }
 
