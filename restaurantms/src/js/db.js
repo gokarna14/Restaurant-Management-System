@@ -196,6 +196,13 @@ export const columns = {
         TableNumber: 'Table Number',
         ReservationNumber: 'Reservation Number',
         ReservationTime: 'Reservation Time'
+    },
+    l5o:{
+        OrderID: 'Order ID',
+        CustomerFirstName:'Customer First Name',
+        CustomerLastName: 'Customer Last Name',
+        CusID: 'Customer ID',
+        WaiterName: 'Name of the'
     }
 
 }

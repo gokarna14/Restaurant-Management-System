@@ -16,7 +16,7 @@ const Display=(props)=>{
         }
     )
 
-    const rowRender2 =(n)=> (props.gotData.length > 0 ? Object.keys(props.gotData[0]) : []).map(
+    const rowRender2 =(n)=> (props.self === undefined ? (props.gotData.length > 0 ? Object.keys(props.gotData[0]) : []): props.db2n).map(
         (keys)=>{
             if (keys === 'dob' && props.gotData[n][keys] !== null ){
                 return(
@@ -28,7 +28,7 @@ const Display=(props)=>{
             else{
               return (
             <td>
-                {props.gotData[n][keys]}
+                {(props.self === undefined ? props.gotData[n][keys] : keys)}
             </td>
             )  
             }

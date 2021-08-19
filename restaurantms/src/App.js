@@ -10,6 +10,7 @@ import OrderIndex from './js/Order/OrderIndex';
 import EmployeeIndex from './js/Employee/EmplyeeIndex';
 import ResourcesIndex from './js/Resources/ResourcesIndex';
 import ReservationIndex from './js/Reservation/ReservationIndex';
+import Welcome from './js/Welcome';
 
 function App() {
 
@@ -20,7 +21,8 @@ function App() {
     ['/Order', OrderIndex],
     ['/Resources', ResourcesIndex],
     ['/Employee', EmployeeIndex],
-    ['/Reservation', ReservationIndex]
+    ['/Reservation', ReservationIndex],
+    ['/', Welcome]
 ])
 
   const routeInfo = routing.map(

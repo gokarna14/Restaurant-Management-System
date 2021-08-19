@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import { SearchKeys, columns, dataType } from '../db'
 import axios from 'axios'
 import Display from '../Display/Display'
-import Decorate from '../Display/Decorate'
 import ComplexSearch from './ComplexSearch' 
 
 /*

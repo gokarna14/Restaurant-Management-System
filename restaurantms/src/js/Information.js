@@ -2,7 +2,7 @@ import React from 'react'
 import { animated, useSpring, Spring } from 'react-spring';
 
 // https://www.outlookindia.com/outlooktraveller/public/uploads/articles/explore/feature-platter.jpg
-const Information =()=>{
+const Information =(props)=>{
 
     const members = [
         {
@@ -33,8 +33,7 @@ const Information =()=>{
     const styleTable = useSpring({
         loop: { reverse: true },
         from: { 
-            x:-200, 
-            background: "#46e891",
+            x:(props.normal === undefined ? -200 : 500), 
                 },
         to: { x:0 },
         config: {duration: 5000},
@@ -42,7 +41,7 @@ const Information =()=>{
     const styleTopic = useSpring({
         loop: { reverse: true },
         from: { x:0, opacity: 0.5 },
-        to: { x:-200, opacity: 1 },
+        to: { x:(props.normal === undefined ? -200 : 500), opacity: 1 },
         config: {duration: 5000},
     })
 
@@ -51,7 +50,7 @@ const Information =()=>{
             <animated.div style={{
                 ...styleTopic
                 }}>
-                <h1>DBMS Project, Restaurant Management System</h1>
+                <h1>{props.normal === undefined ? 'DBMS Project, Restaurant Management System' : ''}</h1>
                 <hr />
                 <h3 style={{textAlign:'left'}}>Completed By</h3>
                 <hr />
@@ -60,7 +59,7 @@ const Information =()=>{
             <animated.div
                 style={{...styleTable}}
             >
-                    <table className='table table-dark'>
+                    <table className='table table-dark' style={{width:'50%', textAlign:'center'}} >
                         <thead className='bg-danger'>
                             <tr>
                                 <th>Name</th>
