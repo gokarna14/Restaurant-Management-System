@@ -4,6 +4,7 @@ import Search from '../Search/Search'
 import SelectOptions from '../SelectOptions'
 import { primaryKey } from '../db'
 import swal from 'sweetalert'
+import { SearchKeys } from '../db'
 
 
 const COrder =()=>{
@@ -11,11 +12,11 @@ const COrder =()=>{
     const [info, setInfo] = useState({})
     const [formShow, setFormShow] = useState(true)
     const [afterNewOrder, setAfterNewOrder] = useState(false)
-    const [selectTables, setST] =  useState(['CUSTOMERS', 'WAITER'])
+    const [selectTables, setST] =  useState(['CUSTOMERS', 'WAITER', 'TABLE_'])
     const[showAddDish, setShowAddDish] = useState(false)
 
 
-    const submitFunction=(info)=>{
+    const submitFunction=(info, addFields)=>{
         var valid = (info['FK'].length  === info['table'].length && !(info['FK'].includes('') || info['table'].includes('')))
        // setFormShow(!valid)
         if(!valid){
@@ -26,23 +27,29 @@ const COrder =()=>{
             for (var i=0; i<info['FK'].length; i++){
                 sql += primaryKey[info['table'][i]] + ', '
             }
+            for (i in addFields){
+                sql += SearchKeys[info.mainTable][i] + ', '
+            }
             sql = sql.slice(0, -2)
             sql += ") VALUES ("
             for (i=0; i<info['FK'].length; i++){
                 sql += "'" + info['FK'][i] + "',"
             }
+            for (i in addFields){
+                sql += "'" + addFields[i] + "',"
+            }
             sql = sql.slice(0, -1)
             sql += ");"
-            console.log(sql)
+            // console.log(sql)
             axios.post('/api/add', {sql:sql}).then((res)=>{
                 swal('DONE', 'NEW ' + info.mainTable + ' REGISTERED', 'success')
             }).catch(err=>{
                 console.log(err)
             })
         }
-        setAfterNewOrder(true)
 
     }
+
 
     return(
         <>
@@ -62,7 +69,7 @@ const COrder =()=>{
             </div>
             }
         </div>
-        <div style={{textAlign:'left', marginTop: (formShow ? '20%' : '0') }} >
+        <div style={{textAlign:'left', marginTop: (formShow ? '23%' : '0') }} >
             <div>
                 <button className='btn btn-primary' onClick={()=>{setShowAddDish(!showAddDish)}}>ADD FOOD ITEMS TO THE ORDER</button>
                     {/* { showAddDish && <div>

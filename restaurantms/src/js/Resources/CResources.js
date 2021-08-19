@@ -81,7 +81,7 @@ const CResources = ()=>{
             <div>
                 <SelectOptions
                 mainTable={'TABLE_'}
-                selectTable={['WAITER', 'ORDER_']}
+                selectTable={['WAITER']}
                 additionalFields={['Capacity']}
                 submitFunction={submitFunction}
             ></SelectOptions>
