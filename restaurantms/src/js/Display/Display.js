@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { useTransition, animated } from 'react-spring'
 
 
+// props: gotdata
+
 const Display=(props)=>{
 
  

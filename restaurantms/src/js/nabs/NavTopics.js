@@ -31,6 +31,12 @@ export const NavTopics = [
         label: 'Employee',
         class: class_,
         variant: variant
+    },
+    {
+        path:'/Reservation',
+        label: 'Reservations',
+        class: class_,
+        variant: variant
     }
     
 ]

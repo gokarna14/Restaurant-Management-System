@@ -1,7 +1,7 @@
 .modalBackground {
     width: 100vw;
     height: 100vh;
-    position: fixed;
+    position: top;
     display: flex;
     justify-content: center;
     padding-bottom: 20%;

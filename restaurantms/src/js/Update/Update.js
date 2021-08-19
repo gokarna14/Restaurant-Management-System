@@ -16,6 +16,7 @@ const Update = (props) =>{
     const [confirmIDUpdate, setcidu] = useState(false)
     const [multipleUpdate, setMultipleUpdate] = useState(false)
     const [showSearch, setShowSearch] = useState(false)
+    const [show, setShow] = useState(false)
 
     const resetAll =()=>{
         setID('')
@@ -190,7 +191,9 @@ const Update = (props) =>{
 
 
     return(
-        <div>
+        <>
+        <button className='btn btn-outline-dark' onClick={()=>{setShow(!show)}} >Show Update Segment: {props.table}</button>
+        {show && <div>
             <div className='updateWithID'>
                 <form onSubmit={idUpdate} >
                     <div class="input-group-prepend">
@@ -254,7 +257,8 @@ const Update = (props) =>{
                 </div> }
                 
             </div>
-        </div>
+        </div>}
+        </>
     )
 }
 

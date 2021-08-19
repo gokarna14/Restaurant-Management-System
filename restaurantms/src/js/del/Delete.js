@@ -20,6 +20,8 @@ const Delete=(props)=>{
     const [complexSql, setComplexSql] = useState('')
     const [sql, setSQL] = useState('')
     const [showDelAll, setShowDelAll] = useState(false)
+    const [show, setShow] = useState(false)
+
 
     const resetAll=()=>{
         setComplexSql('')
@@ -77,7 +79,10 @@ const Delete=(props)=>{
 
 
     return(
-        <div>
+        <>
+        <hr />
+        <button className='btn btn-info' onClick={()=>{setShow(!show)}} >Show Delete Segment: {props.table}</button>
+        {show && <div>
             <hr />
             {openModal && <Modal complexSql={complexSql} table={props.table} primaryKeyName={primaryKey[props.table]} complexDelz={complexDel}  complexDel={showComplexDel} closeModal={closeModal} delID={delID} delWithID={delWithID}></Modal>}
                 <div className='inf1' style={style1}>
@@ -113,7 +118,8 @@ const Delete=(props)=>{
                                         <ComplexDel setComplexSql={setComplexSql} table={props.table} backEND={backEND} deleteClicked={deleteClicked} setOpenModel={setOpenModel} ></ComplexDel>
                                     </div>}
                 
-        </div>
+        </div>}
+        </>
     )
 }
 

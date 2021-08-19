@@ -5,6 +5,8 @@ import { primaryKey, SearchKeys } from '../db'
 import swal from 'sweetalert'
 import axios from 'axios'
 import Dish from './Dish';
+import { Button, Navbar, NavDropdown } from 'react-bootstrap';
+
 
 
 const CResources = ()=>{
@@ -20,7 +22,6 @@ const CResources = ()=>{
     )
 
     const submitFunction=(info, addFields)=>{
-        console.log(addFields)
         var valid = (info['FK'].length  === info['table'].length && !(info['FK'].includes('') || info['table'].includes('')))
        // setFormShow(!valid)
         if(!valid){
@@ -59,10 +60,12 @@ const CResources = ()=>{
     return(
         <div>
         <hr />
-            <button className='btn btn-danger' onClick={()=>{setMenu(!menu)}}>Register A Menu</button>
-           { menu && <div>
-                <Create float={''} showInf={''} table={'MENU'} ></Create>
-            </div>}
+            <div>     
+                <button className='btn btn-danger' onClick={()=>{setMenu(!menu)}}>Register A Menu</button>
+                { menu && <div>
+                    <Create float={''} showInf={''} table={'MENU'} ></Create>
+                </div>}
+            </div>
             <div>
                 <SelectOptions
                 create={true} 
@@ -72,13 +75,17 @@ const CResources = ()=>{
                 additionalFields = {additionalFields}
                 ></SelectOptions>
             </div>
-            <Dish></Dish>
-            <SelectOptions
+            <div>
+                <Dish></Dish>
+            </div>
+            <div>
+                <SelectOptions
                 mainTable={'TABLE_'}
                 selectTable={['WAITER', 'ORDER_']}
                 additionalFields={['Capacity']}
                 submitFunction={submitFunction}
             ></SelectOptions>
+            </div>
         </div>
     )
 }

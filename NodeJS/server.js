@@ -56,6 +56,7 @@ app.post('/api/add', (req, res)=>{
             console.log(err)
             console.log('Error in SQL Query')
             console.log('-> ' + data.sql);
+            res.send(err)
         }   
         else{         
         console.log("1 record inserted with following SQL query:");

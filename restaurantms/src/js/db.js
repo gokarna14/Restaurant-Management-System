@@ -49,6 +49,12 @@ export const SearchKeys ={
         'Order ID': 'OrderID',
         'Capacity': 'Capacity'
 
+    },
+    RESERVATION:{
+        'Reservation Date': 'ReservationDate',
+        "Customer ID": 'CusID',
+        'Table Number':'TableNumber',
+        'Reservation Time': 'ReservationTime'
     }
 }
 
@@ -116,6 +122,14 @@ export const keyValue = {
         'Order ID': defaultString,
         'Capacity': defaultString,
         }
+    },
+    RESERVATION:(ds)=>{
+        return{
+            'Reservation Date':ds,
+            'Customer ID':ds,
+            'Table Number': ds,
+            'ReservationTime': ds
+        }
     }
 }
 
@@ -174,6 +188,14 @@ export const columns = {
         WaiterID: 'Waiter ID',
         OrderID: 'Order ID',
         Capacity: 'Capacity'
+    },
+    RESERVATION:{
+        ReservationDate: 'Reservation Date',
+        timestamp: 'Timestamp',
+        CusID: 'Customer ID',
+        TableNumber: 'Table Number',
+        ReservationNumber: 'Reservation Number',
+        ReservationTime: 'Reservation Time'
     }
 
 }
@@ -185,7 +207,9 @@ export const dontIncludeInFrom ={
     CHEF: ['Chef ID'],
     MENU:['Menu Number'],
     MenuCategory:['Menu Number', 'Category ID'],
-    DISH: []
+    DISH: [],
+    TABLE_:[],
+    RESERVATION: []
 }
 
 export const dataType = {
@@ -250,7 +274,8 @@ export const dataType = {
     MenuCategory:{},
     DISH:{},
     ORDER_:{},
-    TABLE_:{}
+    TABLE_:{},
+    RESERVATION:{}
 }
 
 
@@ -262,5 +287,6 @@ export const primaryKey ={
     MenuCategory: 'CategoryID',
     DISH: 'DishID',
     ORDER_: 'OrderID',
-    TABLE_:'TableNumber'
+    TABLE_:'TableNumber',
+    RESERVATION: 'ReservationNumber'
 }

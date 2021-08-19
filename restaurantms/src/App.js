@@ -9,6 +9,7 @@ import CustomerIndex from './js/Customer/CustomerIndex';
 import OrderIndex from './js/Order/OrderIndex';
 import EmployeeIndex from './js/Employee/EmplyeeIndex';
 import ResourcesIndex from './js/Resources/ResourcesIndex';
+import ReservationIndex from './js/Reservation/ReservationIndex';
 
 function App() {
 
@@ -18,7 +19,8 @@ function App() {
     [CustomerDomain, CustomerIndex],
     ['/Order', OrderIndex],
     ['/Resources', ResourcesIndex],
-    ['/Employee', EmployeeIndex]
+    ['/Employee', EmployeeIndex],
+    ['/Reservation', ReservationIndex]
 ])
 
   const routeInfo = routing.map(

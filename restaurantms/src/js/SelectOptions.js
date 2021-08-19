@@ -27,7 +27,7 @@ const SelectOptions=(props)=>{
             return(
                 <>
                     <label class="input-group-text">{key}</label>
-                    <input className="form-control" type="text" onChange={(e)=>{
+                    <input className="form-control" type={props.type === undefined ? "text" : props.type[key] }onChange={(e)=>{
                         var temp = additionalFiledInput
                         temp[key] = e.target.value
                         setafi(temp)

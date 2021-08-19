@@ -9,8 +9,6 @@ import axios from 'axios'
 
 const Dish = ()=>{
 
-    const [info, setInfo] = useState({})
-    const [formShow, setFormShow] = useState(true)
     const [selectTables, setST] =  useState(['CHEF', 'MenuCategory'])
     const [additionalFields, setAF] = useState(
         [
