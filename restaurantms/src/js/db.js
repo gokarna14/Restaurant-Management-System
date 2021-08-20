@@ -297,3 +297,36 @@ export const primaryKey ={
     TABLE_:'TableNumber',
     RESERVATION: 'ReservationNumber'
 }
+
+export const sqls = [
+    'select o.OrderID, CONCAT(c.fname," " ,c.lname) as Customer, c.CusID, w.name WaiterName, w.WaiterID ,t.TableNumber, o.completed from ORDER_ o inner join WAITER w on  o.WaiterID = w.WaiterID inner join CUSTOMERS c on c.CusID = o.CusID inner JOIN TABLE_ t on t.TableNumber = o.TableNumber;',
+    'select r.ReservationTime, r.ReservationDate, t.TableNumber, CONCAT(c.fname," " ,c.lname) as Customer, c.address CusAddress, r.timestamp from TABLE_ t inner join RESERVATION r on r.TableNumber = t.TableNumber inner join CUSTOMERS c on c.CusID = r.CusID;',
+
+
+]
+
+export const cols =[
+        [
+        'OrderID', 
+        'Customer', 
+        'CusID', 
+        'WaiterName', 
+        'WaiterID',
+        'TableNumber', 
+        'completed'
+        ],
+        [
+            'ReservationTime',
+            'ReservationDate',
+            'TableNumber',
+            'Customer',
+            'CusAddress',
+            'timestamp'
+        ]
+
+]
+
+export const labels = [
+    'Latest orders',
+    'Reservations'
+]

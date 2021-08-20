@@ -1,43 +1,67 @@
 import React, { useState, useEffect } from 'react'
 import Information from './Information';
-import { animated, useSpring, Spring } from 'react-spring';
-import Display from './Display/Display';
-import { SearchKeys, columns, dataType } from './db'
+import { animated, useSpring} from 'react-spring';
+import {sqls, cols, labels} from './db'
 import axios from 'axios'
-
-
+import CustomDisplay from './Display/CustomDisplay';
+import OrderIndex from './Order/OrderIndex';
 
 
 const Welcome =()=>{
 
-    const [showDisplay, setShowDisplay] = useState(false)
     const [gotData, setGotData] = useState([])
-    const [show, setShow] = useState(false)
-    const [showSearchSegment, setShowSearchSegment] = useState(false)
-    
+    const [gotData1, setGotData1] = useState([])
+    const [temp, setTemp] = useState([])
+    const [showLatestStatus, setShowLatestStatus] = useState(false)
+    const [showOrderDetails, setShowOrderDetails] = useState(false)
+    const [orderId, setOrderId] = useState(0)
+    const [dis, setDis] = useState(false)
 
 
     const styleTopic = useSpring({
         loop: { reverse: true },
-        from: { x:200, opacity: 0.5 },
-        to: { x:-200, opacity: 1 },
+        from: { x:-200, opacity: 0.5 },
+        to: { x:200, opacity: 1 },
         config: {duration: 5000},
     })
 
     useEffect(() => {
-        showAll();
+        for(var i=0; i< sqls.length; i++){
+            showAll(sqls[i], i);
+        }
+        console.log(gotData)
     }, [])
 
-    const showAll =()=>{
-        var sql = 'select o.OrderID, c.fname CustomerFirstName, c.lname CustomerLastName , c.CusID, w.name WaiterName, t.TableNumber, o.completed from ORDER_ o inner join WAITER w on  o.WaiterID = w.WaiterID inner join CUSTOMERS c on c.CusID = o.CusID inner JOIN TABLE_ t on t.TableNumber = o.TableNumber;'
+    const showAll =(sql, index)=>{
         axios.post('/api/show_data/', {sql:sql}).then(res=>{
-            setGotData(res.data)
-            console.log(res.data)
+            var t = gotData;
+            t[index] = res.data
+            setGotData(t)
         }).catch(err=>{
             console.log(err)
         })
-    setShowDisplay(true)
-    setShowSearchSegment(false)
+    }
+
+    const displays = Object.keys(gotData).map(
+        (key)=>{
+            return(
+                <CustomDisplay
+                    gotData={gotData[key]}
+                    columns={cols[key]}
+                    label={labels[key]}    
+                ></CustomDisplay>
+            )
+        }
+    )
+
+    const orderIDReceived =()=>{
+        var sql = 'select o.OrderID, c.DishID, d.DishName, d.ChefID, ch.name ChefName, o.CusID, o.WaiterID, o.TableNumber  from CONTAINS c inner join DISH d on c.DishID = d.dishID inner join ORDER_ o on o.OrderID=' + orderId +' inner join CHEF ch on ch.ChefID = d.ChefID;';
+        axios.post('/api/show_data/', {sql:sql}).then(res=>{
+            setGotData1(res.data)
+        }).catch(err=>{
+            console.log(err)
+        })
+        setDis(true)
     }
 
 
@@ -59,11 +83,36 @@ const Welcome =()=>{
             <div style={{textAlign:'center'}}>
                 <Information normal={''} ></Information>
             </div>
-            <hr />
-            <div style={{textAlign:'center'}}>
-                <h3>Latest 5 Orders</h3>
-                <Display gotData={gotData} self={''} db2n={['Order ID', 'Customer First Name', 'Cus Last Name', 'Customer ID', 'Waiter Name', 'Table Number', 'Completed']}></Display>
+            <div className='aa'>
+                <hr />
+                <button className='btn btn-warning' onClick={()=>{setShowLatestStatus(!showLatestStatus)}} >Observe latest status</button>
+                <hr />
+                {showLatestStatus && <>
+                    {displays}
+                    <hr />
+                </>}
             </div>
+
+            <div className='inf'>
+                <hr />
+                    <button className='btn btn-warning' onClick={()=>{setShowOrderDetails(!showOrderDetails)}} >View order details</button>
+                <hr />
+                { showOrderDetails && <>
+                    <input type="number" placeholder='Enter the OrderID' onChange={(e)=>{setOrderId(e.target.value);setDis(false);}} />
+                    <button className='btn btn-info' onClick={orderIDReceived} >DONE</button>
+                    <hr />
+                {dis && <CustomDisplay
+                    gotData={gotData1}
+                    columns={[
+                        'OrderID', 'DishID', 'DishName', 'ChefID', 'ChefName', 'CusID', 'WaiterID', 'TableNumber'
+                    ]}
+                    label={'Order Details for Order ID = ' + orderId}    
+                ></CustomDisplay>}
+                <hr />
+                </>}
+            </div>
+
+
         </div>
     )
 }
