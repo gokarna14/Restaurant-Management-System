@@ -4,7 +4,6 @@ import { animated, useSpring} from 'react-spring';
 import {sqls, cols, labels} from './db'
 import axios from 'axios'
 import CustomDisplay from './Display/CustomDisplay';
-import OrderIndex from './Order/OrderIndex';
 import Search from './Search/Search';
 
 
@@ -12,7 +11,6 @@ const Welcome =()=>{
 
     const [gotData, setGotData] = useState([])
     const [gotData1, setGotData1] = useState([])
-    const [temp, setTemp] = useState([])
     const [showLatestStatus, setShowLatestStatus] = useState(false)
     const [showOrderDetails, setShowOrderDetails] = useState(false)
     const [orderId, setOrderId] = useState(0)

@@ -1,3 +1,5 @@
+// The most important file
+
 export const SearchKeys ={
     CUSTOMERS:{
         "First Name": 'fname',
