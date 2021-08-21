@@ -47,7 +47,8 @@ export const SearchKeys ={
         'Table Number':'TableNumber',
         "Waiter ID": 'WaiterID',
         'Order ID': 'OrderID',
-        'Capacity': 'Capacity'
+        'Capacity': 'Capacity',
+        'Occupied': 'occupied'
 
     },
     RESERVATION:{
@@ -121,6 +122,7 @@ export const keyValue = {
         "Waiter ID": defaultString,
         'Order ID': defaultString,
         'Capacity': defaultString,
+        'Occupied': defaultString
         }
     },
     RESERVATION:(ds)=>{
@@ -187,7 +189,8 @@ export const columns = {
         TableNumber: 'Table Number',
         WaiterID: 'Waiter ID',
         OrderID: 'Order ID',
-        Capacity: 'Capacity'
+        Capacity: 'Capacity',
+        occupied: 'Occupied'
     },
     RESERVATION:{
         ReservationDate: 'Reservation Date',

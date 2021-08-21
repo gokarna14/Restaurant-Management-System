@@ -5,6 +5,7 @@ import {sqls, cols, labels} from './db'
 import axios from 'axios'
 import CustomDisplay from './Display/CustomDisplay';
 import OrderIndex from './Order/OrderIndex';
+import Search from './Search/Search';
 
 
 const Welcome =()=>{
@@ -91,6 +92,7 @@ const Welcome =()=>{
                     {displays}
                     <hr />
                 </>}
+                <Search table={'TABLE_'} ></Search>
             </div>
 
             <div className='inf'>
